@@ -77,13 +77,13 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
 
     private String manipulateAmountView(TransactionViewHolder holder, String aAmount, String type){
         String amount=aAmount;
-        if (type=="e"){
+        if (type.equals("e")){
             holder.amountText.setTextColor(ContextCompat.getColor(mContext, R.color.expense));
             amount = "- "+amount;
-        }else if (type=="ne"){
+        }else if (type.equals("ne")){
             holder.amountText.setTextColor(ContextCompat.getColor(mContext,R.color.mainYellow));
             amount = "- "+amount;
-        }else if (type=="nr"){
+        }else if (type.equals("nr")){
             holder.amountText.setTextColor(ContextCompat.getColor(mContext,R.color.mainYellow));
             amount = "+ "+amount;
         }else{

@@ -67,6 +67,6 @@ public class ListFragment extends Fragment {
                 null,
                 null,
                 null,
-                TransactionList.TransactionEntry.COLUMN_CREATEDAT + " DESC");
+                TransactionList.TransactionEntry._ID + " DESC");
     }
 }
