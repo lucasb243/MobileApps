@@ -24,13 +24,16 @@ public class MainActivity extends AppCompatActivity {
 
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNavigationView);
         bottomNavigationView.setOnNavigationItemSelectedListener(item -> {
-            final FragmentManager fm = getSupportFragmentManager();
-            final FragmentTransaction ft = fm.beginTransaction();
+             FragmentManager fm = getSupportFragmentManager();
+             FragmentTransaction ft = fm.beginTransaction();
 
             switch (item.getItemId()) {
-                case R.id.pageHome: ft.replace(R.id.flFrameLayout, homeFragment); // setCurrentFragment(homeFragment)
-                case R.id.pageList: ft.replace(R.id.flFrameLayout, listFragment);//setCurrentFragment(listFragment)
+                case R.id.pageHome: ft.replace(R.id.flFrameLayout, homeFragment);
+                break;// setCurrentFragment(homeFragment)
+                case R.id.pageList: ft.replace(R.id.flFrameLayout, listFragment);
+                break;//setCurrentFragment(listFragment)
                 case R.id.pageProfile: ft.replace(R.id.flFrameLayout, profileFragment);
+                break;
                 default: break;//setCurrentFragment(profileFragment)
             }
             ft.addToBackStack(null);

@@ -23,9 +23,5 @@
         app:layout_constraintTop_toTopOf="parent"
         android:paddingVertical="6dp"/>
 
-    <com.github.mikephil.charting.charts.BarChart
-        android:id="@+id/bcBarChar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
 
 </LinearLayout>
