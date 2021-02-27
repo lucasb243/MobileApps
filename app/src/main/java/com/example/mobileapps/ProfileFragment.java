@@ -7,15 +7,15 @@ import androidx.fragment.app.Fragment;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
-public class ListFragment extends Fragment {
+public class ProfileFragment extends Fragment {
     SQLiteDatabase transanctionDB;
     //TransactionAdapter adapter;
     ImageButton filterBtn;
     FloatingActionButton flActBtn;
     //SharedViewModel viewModel;
 
-    public ListFragment() {
-        super(R.layout.fragment_list);
+    public ProfileFragment() {
+        super(R.layout.fragment_profile);
         //transanctionDB = new SQLiteDatabase();
 
         //adapter = new TransactionAdapter;

@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:layout_marginLeft="10dp"
+    android:layout_marginRight="10dp">
+
+    <LinearLayout
+        android:id="@+id/llType"
+        android:layout_marginTop="25dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <ImageButton
+            android:id="@+id/btnRevenue"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:layout_weight="1"
+            android:src="@drawable/ic_add_flbutton"
+            android:background="@drawable/rounded_imagebutton"/>
+        <ImageButton
+            android:id="@+id/btnExpense"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:layout_weight="1"
+            android:background="@drawable/rounded_imagebutton"
+            android:src="@drawable/ic_expense"/>
+        <ImageButton
+            android:id="@+id/btnNeutralExpense"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:layout_weight="1"
+            android:background="@drawable/rounded_imagebutton"
+            android:src="@drawable/ic_neutral" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/llAmount"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="30dp">
+
+
+        <TextView
+            android:id="@+id/tvEnterAmount"
+            android:layout_width="30dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Amount:"
+            android:textStyle="bold"
+            android:padding="4dp"
+            android:textSize="20dp"
+            android:gravity="center"
+            android:textColor="@color/mainBlue"
+            android:fontFamily="@font/montserrat"
+            android:background="@drawable/rounded_textview"/>
+
+        <EditText
+            android:id="@+id/etEnterAmount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:ems="10"
+            android:gravity="end"
+            android:hint="Enter Amount"
+            android:fontFamily="@font/montserrat"
+            android:inputType="numberDecimal" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/llPaymentDate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="5dp">
+
+        <TextView
+            android:id="@+id/tvEnterPayDate"
+            android:layout_width="30dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Date:"
+            android:textStyle="bold"
+            android:padding="4dp"
+            android:textSize="20dp"
+            android:gravity="center"
+            android:textColor="@color/mainBlue"
+            android:fontFamily="@font/montserrat"
+            android:background="@drawable/rounded_textview"/>
+
+        <EditText
+            android:id="@+id/etEnterDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:ems="10"
+            android:fontFamily="@font/montserrat"
+            android:hint="Enter Payment Date"
+            android:inputType="date"
+            android:gravity="end"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/llCategory"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="5dp">
+
+        <TextView
+            android:id="@+id/tvEnterCategory"
+            android:layout_width="30dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Category:"
+            android:padding="4dp"
+            android:textStyle="bold"
+            android:textSize="20dp"
+            android:gravity="center"
+            android:textColor="@color/mainBlue"
+            android:fontFamily="@font/montserrat"
+            android:background="@drawable/rounded_textview"/>
+
+        <com.example.mobileapps.InstantAutoComplete
+            android:id="@+id/acTv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:ems="10"
+            android:gravity="end"
+            android:hint="Enter Category"
+            android:fontFamily="@font/montserrat"
+            android:completionThreshold="0"
+            />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/llNote"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="5dp">
+
+        <TextView
+            android:id="@+id/tvEnterNote"
+            android:layout_width="30dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Note:"
+            android:textStyle="bold"
+            android:textSize="20dp"
+            android:padding="4dp"
+            android:gravity="center"
+            android:textColor="@color/mainBlue"
+            android:fontFamily="@font/montserrat"
+            android:background="@drawable/rounded_textview"/>
+
+        <EditText
+            android:id="@+id/etEnterNote"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:fontFamily="@font/montserrat"
+            android:ems="10"
+            android:hint="Enter additional notes"
+            android:gravity="end"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/llSubmit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <Button
+            android:id="@+id/btnSbmt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/montserrat"
+            android:layout_gravity="center"
+            android:text="SUBMIT"
+            android:textColor="@color/white"
+            android:background="@drawable/rounded_imagebutton"/>
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tvErrorDesciption"
+        android:layout_width="match_parent"
+        android:fontFamily="@font/montserrat"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:textColor="@color/mainRed"
+        android:textSize="20sp" />
+
+
+</LinearLayout>

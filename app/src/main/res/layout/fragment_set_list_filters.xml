@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/tvHelloFilter"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@color/mainBlue"
+        android:fontFamily="@font/montserrat"
+        android:gravity="center"
+        android:text="Set your filters\nhere :)"
+        android:textColor="@color/white"
+        android:textSize="30dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <LinearLayout
+        android:id="@+id/llPeriodFilter"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="4dp"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toBottomOf="@+id/tvHelloFilter">
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnWeekFilter"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:layout_weight="1"
+            android:background="@drawable/rounded_select_button"
+            android:fontFamily="@font/montserrat"
+            android:text="Week"
+            android:tag="notPressed"
+            android:textColor="@color/mainBlue" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnMonthFilter"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:layout_weight="1"
+            android:tag="notPressed"
+            android:background="@drawable/rounded_select_button"
+            android:fontFamily="@font/montserrat"
+            android:text="Month"
+            android:textColor="@color/mainBlue" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnYearFilter"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:layout_weight="1"
+            android:tag="notPressed"
+            android:background="@drawable/rounded_select_button"
+            android:fontFamily="@font/montserrat"
+            android:text="Year"
+            android:textColor="@color/mainBlue" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/llTypeFilter"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="4dp"
+        android:layout_marginVertical="15dp"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toBottomOf="@+id/llPeriodFilter">
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnRevenueFilter"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:layout_weight="1"
+            android:tag="notPressed"
+            android:background="@drawable/rounded_select_button"
+            android:fontFamily="@font/montserrat"
+            android:text="Revenue"
+            android:textColor="@color/mainBlue" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnExpenseFilter"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:layout_weight="1"
+            android:background="@drawable/rounded_select_button"
+            android:fontFamily="@font/montserrat"
+            android:tag="notPressed"
+            android:text="Expense"
+            android:textColor="@color/mainBlue" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnNeutralFilter"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:layout_weight="1"
+            android:background="@drawable/rounded_select_button"
+            android:fontFamily="@font/montserrat"
+            android:tag="notPressed"
+            android:text="Neutral"
+            android:textColor="@color/mainBlue" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/llAmountFilter"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="4dp"
+        android:layout_marginVertical="15dp"
+        android:orientation="vertical"
+        app:layout_constraintTop_toBottomOf="@+id/llTypeFilter">
+
+        <LinearLayout
+            android:id="@+id/llAmountDisplay"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="4dp"
+            android:layout_marginVertical="15dp"
+            android:orientation="horizontal"
+            app:layout_constraintTop_toBottomOf="@+id/llTypeFilter">
+
+            <TextView
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/montserrat"
+                android:text="Filter amount:"
+                android:textColor="@color/mainBlue1"
+                android:textSize="18dp" />
+
+            <TextView
+                android:id="@+id/tvFilterAmount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/montserrat"
+                android:text="none"
+                android:textColor="@color/mainBlue1"
+                android:textSize="18dp" />
+        </LinearLayout>
+
+        <SeekBar
+            android:id="@+id/seekBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:progressTint="@color/mainBlue"
+            android:thumbTint="@color/mainBlue"
+            android:max="500"
+            tools:layout_editor_absoluteX="128dp" />
+    </LinearLayout>
+
+    <GridView
+        android:id="@+id/gvCategoryFilter"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="4dp"
+        android:numColumns="2"
+        app:layout_constraintTop_toBottomOf="@+id/llAmountFilter" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnSbmtFilter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Apply"
+        android:fontFamily="@font/montserrat"
+        android:background="@drawable/rounded_imagebutton"
+        android:textColor="@color/white"
+        android:layout_margin="4dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/gvCategoryFilter" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
