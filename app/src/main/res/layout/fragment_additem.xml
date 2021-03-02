@@ -55,7 +55,7 @@
 
         <TextView
             android:id="@+id/tvEnterAmount"
-            android:layout_width="30dp"
+            android:layout_width="50dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="Amount:"
@@ -92,7 +92,7 @@
 
         <TextView
             android:id="@+id/tvEnterPayDate"
-            android:layout_width="30dp"
+            android:layout_width="50dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="Date:"
@@ -128,7 +128,7 @@
 
         <TextView
             android:id="@+id/tvEnterCategory"
-            android:layout_width="30dp"
+            android:layout_width="50dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="Category:"
@@ -166,7 +166,7 @@
 
         <TextView
             android:id="@+id/tvEnterNote"
-            android:layout_width="30dp"
+            android:layout_width="50dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="Note:"
