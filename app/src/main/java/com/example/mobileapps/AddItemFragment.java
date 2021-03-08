@@ -10,6 +10,7 @@ import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
@@ -31,7 +32,8 @@ public class AddItemFragment extends Fragment {
     private TextView etEtrDate;
     private TextView etEtrNote;
     private TextView tvErrorDesc;
-    private AutoCompleteTextView acTextView;
+    //private AutoCompleteTextView acTextView;
+    private Spinner spinnerCategory;
     private Button btnSbmt;
     private String type;
     SQLiteDatabase transactionDB;
@@ -61,15 +63,20 @@ public class AddItemFragment extends Fragment {
                     float amountHelp = Float.parseFloat(etEtrAmount.getText().toString());
                     String note =  etEtrNote.getText().toString();
                     if (note==null) {
-                        addTransactionItem(type, amountHelp, acTextView.getText().toString(), etEtrDate.getText().toString());
+                        addTransactionItem(type, amountHelp, spinnerCategory.getSelectedItem().toString(), etEtrDate.getText().toString());
                     }else{
-                        addTransactionItem(type, amountHelp, acTextView.getText().toString(), etEtrDate.getText().toString(), note);
+                        addTransactionItem(type, amountHelp, spinnerCategory.getSelectedItem().toString(), etEtrDate.getText().toString(), note);
                     }
                 }
             }
         });
         setImgBtnOnClick();
-        acTextView.setAdapter(new ArrayAdapter<CategoryEnum>(getActivity(), android.R.layout.simple_list_item_1, CategoryEnum.values()));
+        //acTextView.setAdapter(new ArrayAdapter<CategoryEnum>(getActivity(), android.R.layout.simple_list_item_1, CategoryEnum.values()));
+
+        Spinner mySpinner = (Spinner) view.findViewById(R.id.spinnerCategory);
+
+        mySpinner.setAdapter(new ArrayAdapter<CategoryEnum>(getContext(), android.R.layout.simple_spinner_item, CategoryEnum.values()));
+
         return view;
     }
 
@@ -124,7 +131,7 @@ public class AddItemFragment extends Fragment {
     private boolean checkOnClickSubmit() {
         tvErrorDesc.setText("");
         if (type != "empty") {
-            if (contains(acTextView.getText().toString())) {
+            if (contains(spinnerCategory.getSelectedItem().toString())) {
                 if (etEtrAmount.getText().toString() != "" && etEtrDate.getText().toString() != "") {
                     return true;
                 } else {
@@ -149,7 +156,8 @@ public class AddItemFragment extends Fragment {
         etEtrDate.setText(getCurrentTime());
         etEtrNote = view.findViewById(R.id.etEnterNote);
         btnSbmt = view.findViewById(R.id.btnSbmt);
-        acTextView = view.findViewById(R.id.acTv);
+        spinnerCategory = view.findViewById(R.id.spinnerCategory);
+        //acTextView = view.findViewById(R.id.acTv);
         tvErrorDesc = view.findViewById(R.id.tvErrorDesciption);
     }
 

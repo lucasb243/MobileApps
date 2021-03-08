@@ -163,15 +163,30 @@
         android:id="@+id/btnSbmtFilter"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Apply"
-        android:fontFamily="@font/montserrat"
-        android:background="@drawable/rounded_imagebutton"
-        android:textColor="@color/white"
         android:layout_margin="4dp"
+        android:layout_marginTop="52dp"
+        android:background="@drawable/rounded_imagebutton"
+        android:fontFamily="@font/montserrat"
+        android:text="Apply"
+        android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/gvCategoryFilter" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnResetFilter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="4dp"
+        android:background="@drawable/rounded_imagebutton"
+        android:fontFamily="@font/montserrat"
+        android:text="Reset"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnSbmtFilter" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -6,12 +6,13 @@ import androidx.constraintlayout.solver.state.State;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.lifecycle.ViewModelStoreOwner;
 
 import android.os.Bundle;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements ViewModelStoreOwner {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
