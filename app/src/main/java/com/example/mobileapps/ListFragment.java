@@ -99,6 +99,6 @@ public class ListFragment extends Fragment {
                 null,
                 null,
                 null,
-                TransactionList.TransactionEntry._ID + " DESC");
+                "createdAt DESC, "+TransactionList.TransactionEntry._ID + " DESC");
     }
 }

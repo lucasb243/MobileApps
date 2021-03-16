@@ -1,43 +1,35 @@
 package com.example.mobileapps;
 
-import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.AutoCompleteTextView;
 import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 
 import java.text.SimpleDateFormat;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.util.Arrays;
-import java.util.Calendar;
 import java.util.Date;
 
 public class AddItemFragment extends Fragment {
-    private ImageButton btnRevenue;
-    private ImageButton btnExpense;
-    private ImageButton btnNeutralExpense;
+    private Button btnRevenue;
+    private Button btnExpense;
+    private Button btnNeutralExpense;
     private TextView etEtrAmount;
     private TextView etEtrDate;
     private TextView etEtrNote;
     private TextView tvErrorDesc;
-    //private AutoCompleteTextView acTextView;
     private Spinner spinnerCategory;
     private Button btnSbmt;
     private String type;
     SQLiteDatabase transactionDB;
-    TransactionAdapter adapter;
 
     public AddItemFragment() {
         type = "empty";
@@ -56,13 +48,21 @@ public class AddItemFragment extends Fragment {
         transactionDB = dbHelper.getWritableDatabase();
         setUpViews(view);
 
+        setImgBtnOnClick();
         btnSbmt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (checkOnClickSubmit()) {
+                    if(btnNeutralExpense.getTag()=="pressed"){
+                        switch(type){
+                            case "r": type = "nr"; break;
+                            case "e": type = "ne"; break;
+                            default:break;
+                        }
+                    }
                     float amountHelp = Float.parseFloat(etEtrAmount.getText().toString());
                     String note =  etEtrNote.getText().toString();
-                    if (note==null) {
+                    if (note.equals("")) {
                         addTransactionItem(type, amountHelp, spinnerCategory.getSelectedItem().toString(), etEtrDate.getText().toString());
                     }else{
                         addTransactionItem(type, amountHelp, spinnerCategory.getSelectedItem().toString(), etEtrDate.getText().toString(), note);
@@ -70,8 +70,6 @@ public class AddItemFragment extends Fragment {
                 }
             }
         });
-        setImgBtnOnClick();
-        //acTextView.setAdapter(new ArrayAdapter<CategoryEnum>(getActivity(), android.R.layout.simple_list_item_1, CategoryEnum.values()));
 
         Spinner mySpinner = (Spinner) view.findViewById(R.id.spinnerCategory);
 
@@ -81,17 +79,12 @@ public class AddItemFragment extends Fragment {
     }
 
     private void addTransactionItem(String type, Float amountNew, String category, String createdAt, String note){
-
-            transactionDB.execSQL(String.format("INSERT INTO transactionList (type, amount, category, createdAt, note) VALUES ('%s', '%s', '%s', '%s', '%s');", type,amountNew,category,createdAt,note));
-
-
+        transactionDB.execSQL(String.format("INSERT INTO transactionList (type, amount, category, createdAt, editedAt, note) VALUES ('%s', '%s', '%s', '%s', CURRENT_TIMESTAMP, '%s');", type, amountNew, category, createdAt, note));
         final FragmentManager fm = getActivity().getSupportFragmentManager();
         fm.popBackStack();
     }
     private void addTransactionItem(String type, Float amountNew, String category, String createdAt){
-            transactionDB.execSQL(String.format("INSERT INTO transactionList (type, amount, category, createdAt) VALUES ('%s', '%s', '%s', '%s');", type,amountNew,category,createdAt));
-
-
+        transactionDB.execSQL(String.format("INSERT INTO transactionList (type, amount, category, createdAt, editedAt) VALUES ('%s', '%s', '%s', '%s', CURRENT_TIMESTAMP);", type, amountNew, category, createdAt));
         final FragmentManager fm = getActivity().getSupportFragmentManager();
         fm.popBackStack();
     }
@@ -100,34 +93,60 @@ public class AddItemFragment extends Fragment {
         btnRevenue.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                btnRevenue.setBackgroundResource(R.drawable.rounded_imagebutton_clicked);
-                btnExpense.setBackgroundResource(R.drawable.rounded_imagebutton);
-                btnNeutralExpense.setBackgroundResource(R.drawable.rounded_imagebutton);
-                type = "r"; // Revenue
+                disableOtherButtons(v);
             }
         });
 
         btnExpense.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                btnExpense.setBackgroundResource(R.drawable.rounded_imagebutton_clicked);
-                btnRevenue.setBackgroundResource(R.drawable.rounded_imagebutton);
-                btnNeutralExpense.setBackgroundResource(R.drawable.rounded_imagebutton);
-                type = "e"; // Expense
+                disableOtherButtons(v);
             }
         });
 
         btnNeutralExpense.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                btnNeutralExpense.setBackgroundResource(R.drawable.rounded_imagebutton_clicked);
-                btnExpense.setBackgroundResource(R.drawable.rounded_imagebutton);
-                btnRevenue.setBackgroundResource(R.drawable.rounded_imagebutton);
-                type = "ne";
-            }
+                changeButtonAppearance(btnNeutralExpense);}
         });
     }
 
+    private void changeButtonAppearance(Button button) {
+        if (button.getTag() == "notPressed") {
+            button.setBackgroundResource(R.drawable.rounded_select_button_pressed);
+            button.setTextColor(Color.WHITE);
+            button.setTag("pressed");
+        } else {
+            button.setBackgroundResource(R.drawable.rounded_select_button);
+            button.setTextColor(ContextCompat.getColor(getContext(), R.color.mainBlue));
+            button.setTag("notPressed");
+        }
+    }
+
+    private void disableOtherButtons(View view){
+        if(view.getId()==R.id.btnRevenue){
+            changeButtonAppearance(btnRevenue);
+            if(btnRevenue.getTag()=="pressed"){
+                type="r";
+            }else{
+                type="empty";
+            }
+            if(btnExpense.getTag()=="pressed"){
+                changeButtonAppearance(btnExpense);
+            }
+        }
+        if(view.getId()==R.id.btnExpense){
+            changeButtonAppearance(btnExpense);
+            if(btnExpense.getTag()=="pressed"){
+                type="e";
+            }else{
+                type="empty";
+            }
+            if(btnRevenue.getTag()=="pressed"){
+                changeButtonAppearance(btnRevenue);
+            }
+        }
+    }
     private boolean checkOnClickSubmit() {
         tvErrorDesc.setText("");
         if (type != "empty") {
@@ -151,18 +170,16 @@ public class AddItemFragment extends Fragment {
         btnExpense = view.findViewById(R.id.btnExpense);
         btnNeutralExpense = view.findViewById(R.id.btnNeutralExpense);
         etEtrAmount = view.findViewById(R.id.etEnterAmount);
-        //etEtrCtgry        = view.findViewById(R.id.etEnterCategory)
         etEtrDate = view.findViewById(R.id.etEnterDate);
         etEtrDate.setText(getCurrentTime());
         etEtrNote = view.findViewById(R.id.etEnterNote);
         btnSbmt = view.findViewById(R.id.btnSbmt);
         spinnerCategory = view.findViewById(R.id.spinnerCategory);
-        //acTextView = view.findViewById(R.id.acTv);
         tvErrorDesc = view.findViewById(R.id.tvErrorDesciption);
     }
 
     private String getCurrentTime() {
-        SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
         Date date = new Date();
         return formatter.format(date);
     }

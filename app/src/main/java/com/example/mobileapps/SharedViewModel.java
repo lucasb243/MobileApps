@@ -44,24 +44,3 @@ public class SharedViewModel extends ViewModel {
         return getAllItems();
     }
 }
-
-
-//public class FilterFragment extends Fragment {
-//    private ListViewModel viewModel;
-//
-//    @Override
-//    public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
-//        viewModel = new ViewModelProvider(requireActivity()).get(ListViewModel.class);
-//        viewModel.getFilters().observe(getViewLifecycleOwner(), set -> {
-//            // Update the selected filters UI
-//        });
-//    }
-//
-//    public void onFilterSelected(Filter filter) {
-//        viewModel.addFilter(filter);
-//    }
-//
-//    public void onFilterDeselected(Filter filter) {
-//        viewModel.removeFilter(filter);
-//    }
-//}
