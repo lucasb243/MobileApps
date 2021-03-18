@@ -192,6 +192,5 @@ public class AddItemFragment extends Fragment {
         }
         return false;
     }
-    //help
 
 }
